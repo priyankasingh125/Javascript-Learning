@@ -1,0 +1,163 @@
+html, body {
+  margin:0;
+  padding:0;
+}
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight:100;
+  position: relative;
+  background: url('../image/2b61c6e1-dc2c-41b7-8b85-a5f7144cb9db.jpg') center center; 
+  background-size: cover;
+  height: 910px;
+  text-align: center; 
+  width:100%;
+}
+
+.rules {
+    position: absolute;
+    top: 440px;
+    right: 200px;
+    font-weight:bolder;
+    font-size:80%;
+    font-weight:bolder;
+    text-align:center;
+}
+.button {
+  background-color:lightblue;
+  border:black;
+  left:28%;
+  color: black;
+  padding:20px;
+  text-align:center;
+  font-weight:bold;
+  text-decoration:none;
+  display:block;
+  font-size:20px;
+  bottom:0%;
+  cursor:pointer;
+  position:relative;
+  
+
+}
+.score
+{    color:#fff;
+	 font-size:20px;
+	 bottom :0%;
+	 position:absolute;
+	 right:23%;
+	 font-weight:bold;
+	 
+}
+.ansbtn {
+	top:0%;
+	bottom:0%;
+	position:relative;
+  border: 1px solid #0066cc;
+  background-color: #0099cc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+.ansbtn:hover {
+  border: 1px solid #0099cc;
+  background-color: #00aacc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+.ansbtn:disabled,
+.ansbtn[disabled]
+{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+.answerbtn
+{
+ width:50%;
+ aspect-ratio: 2/1;
+ border: 2px solid body;
+ display:grid;
+ grid-template-columns: 1fr 1fr;
+ position:relative;
+ left:25%;
+ font-weight:bold;
+ font-size: 30px;
+
+}
+
+.header {
+
+  text-align: center; 
+ top:180px;
+  position:relative;
+}
+
+.container {
+  position: relative;
+  top: 200px;
+ }
+ 
+.quiz-container
+{ 
+background: url('../image/10740576_5_13.jpg') repeat center center  ; 
+border-radius:10px;
+box-shadow: 0 4px 10px rgba(0,0,0,2);	
+width:60%;
+height:390px;
+left:18%;
+position:relative;
+top :20%;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight:bold;
+  text-transform: uppercase; 
+}
+
+ .btn  {
+    background-color: lightblue;
+    border: 5px solid lightblue;
+    border-radius: 10px;
+	top:0%;
+    box-shadow: 0 0 5px 1px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.navigation {
+	
+    display: relative;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 768px) {
+
+    .quiz-container {
+        height: fit-content;
+        width: fit-content;
+        
+    }
+
+    
+    #answer-buttons button {
+        padding: 1em;
+    }
+
+    .header {
+        font-size: 3vh;
+    }
+
+    .rules btn{
+        top: 75%;
+    }
+	.btn
+	{
+		right:5%
+	}
+}
