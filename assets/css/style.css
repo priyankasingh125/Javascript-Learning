@@ -108,7 +108,7 @@ width:60%;
 height:390px;
 left:18%;
 position:relative;
-top :20%;
+top :30dvh;
 }
 
 .header h1 {
