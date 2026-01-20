@@ -1,10 +1,4 @@
 const startButton = document.getElementById('Start-btn');
-<<<<<<< HEAD
-=======
-const openButton = document.querySelector("[data-open-modal]");
-const closeButton = document.querySelector("[data-close-modal]");
-const modal = document.querySelector("[data-modal]");
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 const questionElt = document.getElementById('question');
 const answerbuttons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
@@ -17,22 +11,7 @@ let shuffledQuestions;
 document.addEventListener("DOMContentLoaded", function () {
     
 	document.getElementById('quiz').style.display = "none";
-<<<<<<< HEAD
 	startButton.addEventListener('click', StartQuiz);
-=======
-	//nextButton.style.display = "none";
-    // Event listener for opening the rules dialog box
-    openButton.addEventListener('click', () => {
-        modal.showModal();
-    });
-	 // Event listener for closing the rules dialog box
-    closeButton.addEventListener('click', () => {
-        modal.close();
-    });
-	 // Event listener for starting the Quiz
-	startButton.addEventListener('click', StartQuiz);
-	// Event listener for Navigation to the next Quiz
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 	nextButton.addEventListener('click', () => {
         CurrentQuestionIndex++;
 	
@@ -53,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 }); 
   
-<<<<<<< HEAD
    function ResetQuestion()
 	{
      
@@ -64,10 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	}
 	
-=======
-   
-
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 let questions = [{
         question: 'What does SQL Stand for?',
         answers: [{
@@ -292,7 +266,6 @@ let questions = [{
         ]
     },
 	];
-<<<<<<< HEAD
 
 	function StartQuiz() {
 	
@@ -300,70 +273,22 @@ let questions = [{
     questions.sort(() => Math.random() - 0.5);
     //ResetQuestion(CurrentQuestionIndex);
 	CurrentQuestionIndex =0;
-=======
- function ShowScore()
-   {  
-   
-      ResetQuestion();
-	  let TEXT = "YOU SCORED   " + score ;
-   	  document.getElementById('question').innerHTML = TEXT  +  " OUT OF "  +  CurrentQuestionIndex +" CLICK "+"START "+" AGAIN !!" ;
-	  //document.getElementById('answer-buttons').innerText = " CLICK "+"START TO"+" PLAY AGAIN " ;
-	  document.getElementById('next-btn').style.display = "none";
-	  
-	
-	   //document.getElementById('question').innerHTML = "  ";
-//("You Scored " + score + "in the Quiz Today out of 10");
-   }
-
-	
-	function StartQuiz() {
-	document.getElementById('next-btn').style.display = "block";
-    questions.sort(() => Math.random() - 0.5);
-	//shuffledQuestions = shuffledQuestions.slice(0, 10)
-	//ResetQuestion(CurrentQuestionIndex);
-	CurrentQuestionIndex =0;
-	//ResetQuestion(CurrentQuestionIndex);
-	document.getElementById('quiz').style.display = 'block';
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 	score=0;
 	nextButton.innerHTML="Next";
 	document.getElementById('score').innerText = 'SCORE:' + score;
 	showQuestion();
 	}
-<<<<<<< HEAD
-=======
-
-		
-	function ResetQuestion()
-	{
-     
-   // Clear The Answer Grid
-     while (answerbuttons.firstChild) {
-       answerbuttons.removeChild(answerbuttons.firstChild);
-	 
-	}
-	}
-	
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 	function showQuestion()
 	{
 	ResetQuestion();
 	//Get The Question from the Array And Append to the answer grid
 	let currentquestion = questions[CurrentQuestionIndex];
-<<<<<<< HEAD
 	questionElt.innerHTML =currentquestion.question;
 	
 	currentquestion.answers.forEach((answer)=> {
 	const button = document.createElement("button");
 	button.innerHTML = answer.text;
  	button.classList.add("ansbtn");
-=======
-	question.innerHTML =currentquestion.question;
-	currentquestion.answers.forEach((answer)=> {
-	const button = document.createElement("button");
-	button.innerHTML = answer.text;
-	button.classList.add("ansbtn");
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 	button.fontWeight ="bold";
 	answerbuttons.appendChild(button);
 	button.addEventListener("click",() => selectAnswer(button,answer));
@@ -396,7 +321,6 @@ let questions = [{
 	
 	 }
  
-<<<<<<< HEAD
 		
 
 
@@ -405,10 +329,3 @@ let questions = [{
 
 
 	
-=======
-
-  
-
-
-
->>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
