@@ -20,7 +20,11 @@ body {
     top: 440px;
     right: 200px;
     font-weight:bolder;
+<<<<<<< HEAD
     font-size:16px;
+=======
+    font-size:80%;
+>>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
     font-weight:bolder;
     text-align:center;
 }
@@ -42,7 +46,11 @@ body {
 
 }
 .score
+<<<<<<< HEAD
 {  color:#fff;
+=======
+{    color:#fff;
+>>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 	 font-size:20px;
 	 bottom :0%;
 	 position:absolute;
@@ -88,6 +96,7 @@ body {
 }
 
 .header {
+<<<<<<< HEAD
 text-align: center; 
 top:180px;
 position:relative;
@@ -104,6 +113,24 @@ position:relative;
 opacity: 1;
 
 border-radius:10px;
+=======
+
+  text-align: center; 
+ top:180px;
+  position:relative;
+}
+
+.container {
+  position: relative;
+  top: 200px;
+ }
+ 
+.quiz-container
+{ 
+background: url('../image/10740576_5_13.jpg') repeat center center  ; 
+border-radius:10px;
+box-shadow: 0 4px 10px rgba(0,0,0,2);	
+>>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 width:60%;
 height:390px;
 left:18%;
@@ -112,6 +139,7 @@ top :30dvh;
 }
 
 .header h1 {
+<<<<<<< HEAD
 color: #fff;
 font-size: 40px;
 margin-top: 0;
@@ -136,6 +164,31 @@ font-size: 20px;
 display: relative;
 justify-content: center;
 align-items: center;
+=======
+  color: #fff;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight:bold;
+  text-transform: uppercase; 
+}
+
+ .btn  {
+    background-color: lightblue;
+    border: 5px solid lightblue;
+    border-radius: 10px;
+	top:0%;
+    box-shadow: 0 0 5px 1px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.navigation {
+	
+    display: relative;
+    justify-content: center;
+    align-items: center;
+>>>>>>> 3191ca40c27d07e2b138b6dd424b061e7f22125b
 }
 @media screen and (max-width: 768px) {
 
