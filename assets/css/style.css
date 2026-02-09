@@ -151,9 +151,9 @@ top:30dvh;
 }
 .header h1 {
 color: #fff;
-font-size: 20px;
-margin-top: 10px;
-margin-bottom: 20px;
+font-size:20px;
+margin-top:10svh;
+margin-bottom:20px;
 font-weight:bold;
 text-transform: uppercase; 
 }
@@ -198,10 +198,9 @@ left:15dvh;
 text-align: center; 
 display:flex;
 flex-direction:row;
-top:20svh;
+top:20dvh;
 left:10dvh;
 position:relative;
-
 }
 
 }
