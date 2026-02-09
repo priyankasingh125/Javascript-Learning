@@ -1,68 +1,87 @@
-html, body {
-  margin:0;
-  padding:0;
+
+.flex-break {
+ flex-basis: 120%;
+ margin-bottom: 40px;
 }
-
-
+html,body{
+height:100%;
+margin:0;
+}
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight:100;
-  position: relative;
-  background: url('../image/2b61c6e1-dc2c-41b7-8b85-a5f7144cb9db.jpg') center center; 
-  background-size: cover;
-  height: 910px;
-  text-align: center; 
-  width:100%;
+background-image: url('../image/2b61c6e1-dc2c-41b7-8b85-a5f7144cb9db.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+font-family: 'Roboto', sans-serif;
+position: relative;
+background-size: cover;
+text-align: center; 
+width:100%;
+display:flex;
 }
 
 .rules {
-    position: absolute;
-    top: 440px;
-    right: 200px;
-    font-weight:bolder;
-    font-size:16px;
-    font-weight:bolder;
-    text-align:center;
+position: absolute;
+top: 440px;
+right: 200px;
+font-weight:bolder;
+font-size:16px;
+font-weight:bolder;
+text-align:center;
 }
 .button {
-  background-color:lightblue;
-  border:black;
-  left:28%;
-  color: black;
-  padding:20px;
-  text-align:center;
-  font-weight:bold;
-  text-decoration:none;
-  display:block;
-  font-size:20px;
-  bottom:0%;
-  cursor:pointer;
-  position:relative;
-  
-
+background-color:lightblue;
+border:black;
+left:28%;
+color: black;
+padding:20px;
+text-align:center;
+font-weight:bold;
+text-decoration:none;
+display:block;
+font-size:20px;
+bottom:0%;
+cursor:pointer;
+position:relative;
+}
+.containerflex{
+display:flex;
+background-color: DodgerBlue;
+border: 2px solid body;
+flex-direction:column;
+position:relative;
+flex: 1 1 100%;
+font-weight:bold;
+font-size: px;
+padding:10px;
+margin-bottom:30px;
+left:5dvh;
 }
 .score
-{  color:#fff;
-	 font-size:20px;
-	 bottom :0%;
-	 position:absolute;
-	 right:23%;
-	 font-weight:bold;
+{color:#fff;
+font-size:20px;
+bottom :0%;
+position:relative;
+margin-left: auto;
+margin-right: auto;
+font-weight:bold;
+display:inline-flexbox;
+  
 	 
 }
 .ansbtn {
-	top:0%;
-	bottom:0%;
-	position:relative;
-  border: 1px solid #0066cc;
-  background-color: #0099cc;
-  color: #ffffff;
-  padding: 5px 10px;
+top:0%;
+bottom:0%;
+position:relative;
+border: 1px solid #0066cc;
+background-color:#0F62FE;
+color: #ffffff;
+padding: 5px 10px;
 }
 
 .ansbtn:hover {
   border: 1px solid #0099cc;
-  background-color: #00aacc;
+  background-color: #005FCC;
   color: #ffffff;
   padding: 5px 10px;
 }
@@ -71,7 +90,7 @@ body {
 {
   border: 1px solid #999999;
   background-color: #cccccc;
-  color: #666666;
+  color: #ffffff;
 }
 .answerbtn
 {
@@ -89,28 +108,47 @@ body {
 
 .header {
 text-align: center; 
-top:180px;
+display:flex;
+flex-direction:column;
+top:25svh;
+left:30dvh;
 position:relative;
+
 }
 
 .container {
  position: relative;
  top: 200px;
  }
- 
-.quiz-container
-{
-	color:white;
-opacity: 1;
 
+.quiz-container
+{ 
+display:flex;
+color:white;
+flex-direction:row;
+opacity: 1;
+border-radius:10px;
+width:100svh;
+max-height:140svh;
+position:relative;
+text-align:center;
+top:20svh;
+left:38dvh;
+}
+.about-container
+{ 
+display:flex;
+text-align:center;
+color:white;
+opacity: 1;
 border-radius:10px;
 width:60%;
 height:390px;
-left:18%;
+left:38%;
+font-color:20px;
 position:relative;
-top :30dvh;
+top:30dvh;
 }
-
 .header h1 {
 color: #fff;
 font-size: 40px;
@@ -119,14 +157,13 @@ margin-bottom: 20px;
 font-weight:bold;
 text-transform: uppercase; 
 }
-
- .btn  {
+.btn{
 background-color: #005FCC;
-border: 3px solid #FFBF47;
+border: 3px solid #005FCC;
 border-radius: 10px;
 top:0%;
 box-shadow: 0 0 5px 1px;
-padding: 20px;
+padding: 10px;
 font-weight: bold;
 color: #FFFFFF;
 font-size: 20px;
@@ -137,28 +174,34 @@ display: relative;
 justify-content: center;
 align-items: center;
 }
-@media screen and (max-width: 768px) {
+@media(max-width:1100px) {
+.containerflex 
+{
+font-size:10px;
+flex-direction:column;
+max-width:38svh;
+max-height:34svh;
+left:2dvh;
+}
+.flex-break {
+ flex-basis: 1dvh;
+}
+.quiz-container {
+top:20dvh;
+max-width:58svh;
+max-height:40svh;
+font-size:10px;
+justify-content:center;
+left:15dvh;
+}
+.header {
+text-align: center; 
+display:flex;
+flex-direction:row;
+top:20svh;
+left:10dvh;
+position:relative;
 
-    .quiz-container {
-        height: fit-content;
-        width: fit-content;
-        
-    }
+}
 
-    
-    #answer-buttons button {
-        padding: 1em;
-    }
-
-    .header {
-        font-size: 3vh;
-    }
-
-    .rules btn{
-        top: 75%;
-    }
-	.btn
-	{
-		right:5%
-	}
 }

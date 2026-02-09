@@ -1,47 +1,65 @@
 const startButton = document.getElementById('Start-btn');
 const questionElt = document.getElementById('question');
-const answerbuttons = document.getElementById('answer-buttons');
+const answerbuttons = document.getElementById('radiocontainer');
 const nextButton = document.getElementById('next-btn');
 const quizcontainer = document.getElementById('quiz');
+const backButton= document.getElementById('back-btn');
 let CurrentQuestionIndex = 0;
 let score = 0;
 let figure =0;
 let shuffledQuestions;  
+let selected ;
+let answers=[];
 // Event listener for DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
-    
+    window.alert("Welcome to the Quiz!");
 	document.getElementById('quiz').style.display = "none";
+	document.getElementById('next-btn').style.visibility = true;
 	startButton.addEventListener('click', StartQuiz);
+	backButton.addEventListener('click', () => {
+   if(CurrentQuestionIndex>0)
+   {
+	   CurrentQuestionIndex--;
+	   showQuestion();
+   }
+	});
 	nextButton.addEventListener('click', () => {
+		if(!selected && answers[CurrentQuestionIndex] == undefined)
+        {
+	     window.alert("Select The Answer");
+		 showQuestion();
+      }
+       else
+
+   {
         CurrentQuestionIndex++;
+   }
 	
         if(CurrentQuestionIndex < questions.length)
 		{ 
 	
 	     showQuestion();
+
 		}
 		
 		else
 		{
 			ShowScore();
 		}
-	
-      
-
-		
-    });
+});
 }); 
   
-   function ResetQuestion()
+    function ResetQuestion()
 	{
      
-   // Clear The Answer Grid
-     while (answerbuttons.firstChild) {
+   //Clear The Answer Grid
+      while (answerbuttons.firstChild) {
        answerbuttons.removeChild(answerbuttons.firstChild);
 	 
 	}
-	}
-	
+	} 
+let snapshotQuestion;	
+let currentquestion;
 let questions = [{
         question: 'What does SQL Stand for?',
         answers: [{
@@ -60,7 +78,8 @@ let questions = [{
                 text: 'Structured Question Language',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
     {
         question: 'Which SQL Statement is used to extract Data from a Database?',
@@ -80,7 +99,8 @@ let questions = [{
                 text: 'SELECT',
                 correct: true
             },
-        ]
+        ],
+		selectval: false
     },
 	    {
         question: 'Which SQL Statement is used to Delete Data from database?',
@@ -100,7 +120,8 @@ let questions = [{
                 text: 'REMOVE',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 {
         question: 'Which SQL Statement is used to Insert new data in a Database?',
@@ -120,7 +141,8 @@ let questions = [{
                 text: 'ADD NEW',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 {
         question: 'How do you select column name FirstName from table Persons?',
@@ -140,7 +162,8 @@ let questions = [{
                 text: 'SELECT Persons_FirstName',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	{
         question: 'How do you select all columns from a table name Persons?',
@@ -160,7 +183,8 @@ let questions = [{
                 text: 'SELECT Persons_FirstName',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	{
         question: 'How can you delete the records where FirstName is Peter in the Persons Table',
@@ -180,7 +204,8 @@ let questions = [{
                 text: 'Delete * from Persons',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	{
         question: 'Which SQL can return you the number of records in the Person table?',
@@ -199,8 +224,10 @@ let questions = [{
             {
                 text: 'SELECT COUNT(*) FROM Persons',
                 correct: true
+				
             },
-        ]
+        ],
+		selectval: false
 	},
 		{
         question: 'Which is the most common type of join in SQL?',
@@ -221,7 +248,8 @@ let questions = [{
                 text: 'JOINED TABLE',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	{
         question: 'Which operator is used to select values within a range?',
@@ -242,7 +270,8 @@ let questions = [{
                 text: 'RANGE BETWEEN',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	{
         question: 'Which operator is used to search for a particular pattern in a column?',
@@ -263,14 +292,16 @@ let questions = [{
                 text: 'IN BETWEEN',
                 correct: false
             },
-        ]
+        ],
+		selectval: false
     },
 	];
 
 	function StartQuiz() {
 	
 	document.getElementById('quiz').style.display = "block";
-    questions.sort(() => Math.random() - 0.5);
+    document.getElementById('next-btn').style.display= "inline-block";
+	questions.sort(() => Math.random() - 0.5);
     //ResetQuestion(CurrentQuestionIndex);
 	CurrentQuestionIndex =0;
 	score=0;
@@ -281,46 +312,114 @@ let questions = [{
 	function showQuestion()
 	{
 	ResetQuestion();
+	
 	//Get The Question from the Array And Append to the answer grid
-	let currentquestion = questions[CurrentQuestionIndex];
+	currentquestion = questions[CurrentQuestionIndex];
 	questionElt.innerHTML =currentquestion.question;
+	currentquestion.answers.forEach((answer,index)=> {
+    const label = document.createElement("label");
+	const radio = document.createElement("input");
+	radio.type = "radio";
+	radio.name = "answer";
+	radio.value = index;
+	const span = document.createElement("span");
+	span.textContent= answer.text;
+    label.appendChild(radio);
+	label.appendChild(span);
+	answerbuttons.appendChild(label);
+	const breakDiv = document.createElement('div');
+    breakDiv.className = 'flex-break';
+    answerbuttons.appendChild(breakDiv);
+    radio.addEventListener("click",() => selectAnswer(radio,answer));
+	selected = document.querySelector('input[name="answer"]:checked');
 	
-	currentquestion.answers.forEach((answer)=> {
-	const button = document.createElement("button");
-	button.innerHTML = answer.text;
- 	button.classList.add("ansbtn");
-	button.fontWeight ="bold";
-	answerbuttons.appendChild(button);
-	button.addEventListener("click",() => selectAnswer(button,answer));
 	});
-	   
-	
+    document.querySelectorAll('input[name="answer"]').forEach(r=>r.checked = false);
+    if(answers[CurrentQuestionIndex] !== undefined)
+	{
+	document.querySelectorAll('input[name="answer"]')[answers[CurrentQuestionIndex]].checked=true;
 	}
 	
-	function selectAnswer(button,answer)
-	{const correct = answer.correct;
+}
+ 	
+	function selectAnswer(radio,answer)
+	{ 
+    selected = document.querySelector('input[name="answer"]:checked');
+    questions[selected.value].selectval= true;
+	answers[CurrentQuestionIndex]= selected.value;
+	const correct = answer.correct;
      if(correct){
-	button.classList.add("ansbtn"); 
-	button.style.backgroundColor="#28a745";
+	radio.classList.add("ansbtn"); 
+	radio.style.backgroundColor="#003A8F";
 	score++;
 	figure=score;
-	 }
-	 else
-	 { button.classList.add("ansbtn");
-	  button.style.backgroundColor="#dc3545";
+	}
+	else
+	{ 
+      radio.classList.add("ansbtn");
+	  radio.style.backgroundColor="#dc3545";
 	 }
 	  Array.from(answerbuttons.children).forEach((btn)=>{
-	  button.classList.add("ansbtn");
+	  radio.classList.add("ansbtn");
 	  btn.disabled=true;
+	 
 	  if(btn.innerText===questions[CurrentQuestionIndex].answers.find(a=>a.correct).text){
-		btn.style.backgroundColor= "#28a745";
+		btn.style.backgroundColor= "#003A8F";
+		
 	  }
 	  });
 
       document.getElementById('score').innerText = 'SCORE:' + score;
 	
-	 }
- 
+	 } 
+	 
+    function previousQuestion()
+	{
+	ResetQuestion();
+	//Get The Question from the Array And Append to the answer grid
+	let currentquestion = questions[CurrentQuestionIndex];
+	questionElt.innerHTML =currentquestion.question;
+	currentquestion.answers.forEach((answer,index)=> {
+    const label = document.createElement("label");
+	const radio = document.createElement("input");
+	radio.type = "radio";
+	radio.name = "answer";
+	radio.value = index;
+	const span = document.createElement("span");
+	span.textContent= answer.text;
+	label.appendChild(radio);
+	radio.checked =currentquestion.selectval;
+	label.appendChild(span);
+	answerbuttons.appendChild(label);
+	const breakDiv = document.createElement('div');
+    breakDiv.className = 'flex-break';
+    answerbuttons.appendChild(breakDiv);
+	document.querySelectorAll('input[name="answer"]').forEach(r=>r.checked = false);
+    if(answers[CurrentQuestionIndex] !== undefined)
+	{
+		document.querySelectorAll('input[name="answer"]')[answers[CurrentQuestionIndex]].checked=true;
+	}
+	});	
+  
+	   }
+
+      
+	 
+  function ShowScore()
+   {  
+   
+      ResetQuestion();
+	  let TEXT = "YOU SCORED   " + score ;
+   	  document.getElementById('question').innerHTML = TEXT  +  " OUT OF "  +  CurrentQuestionIndex +" CLICK "+"START "+" AGAIN !!" ;
+	  //document.getElementById('answer-buttons').innerText = " CLICK "+"START TO"+" PLAY AGAIN " ;
+	  document.getElementById('next-btn').style.display = "none";
+	  document.getElementById('radiocontainer').style.display = "none";
+	  
+	
+	   //document.getElementById('question').innerHTML = "  ";
+//("You Scored " + score + "in the Quiz Today out of 10");
+   }
+
 		
 
 
