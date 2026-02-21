@@ -5,62 +5,60 @@ const nextButton = document.getElementById('next-btn');
 const quizcontainer = document.getElementById('quiz');
 const backButton= document.getElementById('back-btn');
 let CurrentQuestionIndex = 0;
-let score = 0;
+let correctans = "false"; 
 let figure =0;
 let shuffledQuestions;  
 let selected ;
-let answers=[];
+let PreviousQuestionIndex = 0;
+let ans=[];
+
 // Event listener for DOMContentLoaded
-document.addEventListener("DOMContentLoaded", function () {
-    window.alert("Welcome to the Quiz!");
-	document.getElementById('quiz').style.display = "none";
+document.addEventListener("DOMContentLoaded", function () 
+{   window.alert("Welcome to the Quiz!");
+	document.getElementById('quiz').style.display = "none"
 	document.getElementById('next-btn').style.visibility = true;
 	startButton.addEventListener('click', StartQuiz);
 	backButton.addEventListener('click', () => {
-   if(CurrentQuestionIndex>0)
+	if(CurrentQuestionIndex>0)
    {
-	   CurrentQuestionIndex--;
-	   showQuestion();
+	CurrentQuestionIndex--;
+	showQuestion();
    }
-	});
+   });
 	nextButton.addEventListener('click', () => {
-		if(!selected && answers[CurrentQuestionIndex] == undefined)
-        {
-	     window.alert("Select The Answer");
-		 showQuestion();
-      }
-       else
-
-   {
-        CurrentQuestionIndex++;
-   }
-	
-        if(CurrentQuestionIndex < questions.length)
-		{ 
-	
-	     showQuestion();
-
-		}
-		
-		else
-		{
-			ShowScore();
-		}
+	document.getElementById('score').innerText = 'SCORE:' + figure;
+    if(ans[CurrentQuestionIndex]==undefined )
+	{  	
+	document.getElementById('next-btn').style.disabled=true;
+	}
+	else
+    {
+	CurrentQuestionIndex++;
+    document.getElementById('next-btn').style.disabled=false;
+    if(CurrentQuestionIndex < questions.length)
+	{ 
+	showQuestion();
+    }
+	else
+	{
+    ShowScore();
+	}
+	} 
+	 
 });
 }); 
   
     function ResetQuestion()
-	{
-     
-   //Clear The Answer Grid
-      while (answerbuttons.firstChild) {
-       answerbuttons.removeChild(answerbuttons.firstChild);
-	 
+	{  
+	//Clear The Answer Grid
+    while (answerbuttons.firstChild)
+    {
+    answerbuttons.removeChild(answerbuttons.firstChild);
 	}
 	} 
-let snapshotQuestion;	
-let currentquestion;
-let questions = [{
+    let snapshotQuestion;	
+    let currentquestion;
+    let questions = [{
         question: 'What does SQL Stand for?',
         answers: [{
                 text: 'Structured Question Language',
@@ -297,22 +295,26 @@ let questions = [{
     },
 	];
 
-	function StartQuiz() {
-	
+function StartQuiz()
+{
+    document.getElementById('radiocontainer').style.display = "block";
 	document.getElementById('quiz').style.display = "block";
     document.getElementById('next-btn').style.display= "inline-block";
 	questions.sort(() => Math.random() - 0.5);
     //ResetQuestion(CurrentQuestionIndex);
 	CurrentQuestionIndex =0;
 	score=0;
+	ans=[];
+	figure= 0;
+	selected=false;
 	nextButton.innerHTML="Next";
 	document.getElementById('score').innerText = 'SCORE:' + score;
 	showQuestion();
-	}
-	function showQuestion()
-	{
+}
+function showQuestion()
+{
 	ResetQuestion();
-	
+	PreviousQuestionIndex = CurrentQuestionIndex;
 	//Get The Question from the Array And Append to the answer grid
 	currentquestion = questions[CurrentQuestionIndex];
 	questionElt.innerHTML =currentquestion.question;
@@ -331,50 +333,44 @@ let questions = [{
     breakDiv.className = 'flex-break';
     answerbuttons.appendChild(breakDiv);
     radio.addEventListener("click",() => selectAnswer(radio,answer));
-	selected = document.querySelector('input[name="answer"]:checked');
-	
 	});
-    document.querySelectorAll('input[name="answer"]').forEach(r=>r.checked = false);
-    if(answers[CurrentQuestionIndex] !== undefined)
-	{
-	document.querySelectorAll('input[name="answer"]')[answers[CurrentQuestionIndex]].checked=true;
+	document.querySelectorAll('input[name="answer"]')[ans[CurrentQuestionIndex]].checked=true;
+    selected=  document.querySelectorAll('input[name="answer"]')[ans[CurrentQuestionIndex]].checked ;
 	}
-	
-}
  	
-	function selectAnswer(radio,answer)
-	{ 
-    selected = document.querySelector('input[name="answer"]:checked');
-    questions[selected.value].selectval= true;
-	answers[CurrentQuestionIndex]= selected.value;
+function selectAnswer(radio,answer)
+{ 
+	selected = document.querySelector('input[name="answer"]:checked');
 	const correct = answer.correct;
-     if(correct){
-	radio.classList.add("ansbtn"); 
-	radio.style.backgroundColor="#003A8F";
-	score++;
-	figure=score;
+	if(correct && ans[CurrentQuestionIndex]==undefined)
+	 {
+    radio.classList.add("ansbtn"); 
+    radio.style.backgroundColor="#003A8F";
+    questions[selected.value].selectval= true;
+	ans[CurrentQuestionIndex]= selected.value;
+	correctans = "true";
+	figure++;
 	}
-	else
+	else if (!correct && ans[CurrentQuestionIndex]==undefined)
 	{ 
-      radio.classList.add("ansbtn");
-	  radio.style.backgroundColor="#dc3545";
-	 }
-	  Array.from(answerbuttons.children).forEach((btn)=>{
-	  radio.classList.add("ansbtn");
-	  btn.disabled=true;
+    questions[selected.value].selectval= true;
+	ans[CurrentQuestionIndex]= selected.value;
+    radio.classList.add("ansbtn");
+	radio.style.backgroundColor="#dc3545";
+	correctans = "false";
+	}
+	Array.from(answerbuttons.children).forEach((btn)=>{
+	radio.classList.add("ansbtn");
+	btn.disabled=true;
+	if(btn.innerText===questions[CurrentQuestionIndex].answers.find(a=>a.correct).text)
+    {
+	btn.style.backgroundColor= "#003A8F";
+	}
+	});
+ } 
 	 
-	  if(btn.innerText===questions[CurrentQuestionIndex].answers.find(a=>a.correct).text){
-		btn.style.backgroundColor= "#003A8F";
-		
-	  }
-	  });
-
-      document.getElementById('score').innerText = 'SCORE:' + score;
-	
-	 } 
-	 
-    function previousQuestion()
-	{
+   function previousQuestion()
+{
 	ResetQuestion();
 	//Get The Question from the Array And Append to the answer grid
 	let currentquestion = questions[CurrentQuestionIndex];
@@ -400,25 +396,21 @@ let questions = [{
 		document.querySelectorAll('input[name="answer"]')[answers[CurrentQuestionIndex]].checked=true;
 	}
 	});	
-  
-	   }
+}
 
       
 	 
   function ShowScore()
    {  
-   
-      ResetQuestion();
-	  let TEXT = "YOU SCORED   " + score ;
-   	  document.getElementById('question').innerHTML = TEXT  +  " OUT OF "  +  CurrentQuestionIndex +" CLICK "+"START "+" AGAIN !!" ;
-	  //document.getElementById('answer-buttons').innerText = " CLICK "+"START TO"+" PLAY AGAIN " ;
-	  document.getElementById('next-btn').style.display = "none";
-	  document.getElementById('radiocontainer').style.display = "none";
-	  
-	
-	   //document.getElementById('question').innerHTML = "  ";
-//("You Scored " + score + "in the Quiz Today out of 10");
-   }
+    ResetQuestion();
+	let TEXT = "YOU SCORED   " + figure;
+   	document.getElementById('question').innerHTML = TEXT  +  " OUT OF "  +  CurrentQuestionIndex +" CLICK "+"START "+" AGAIN !!" ;
+	//document.getElementById('answer-buttons').innerText = " CLICK "+"START TO"+" PLAY AGAIN " ;
+    document.getElementById('next-btn').style.display = "none";
+	document.getElementById('radiocontainer').style.display = "none";
+	//document.getElementById('question').innerHTML = "  ";
+    //("You Scored " + score + "in the Quiz Today out of 10");
+    }
 
 		
 
