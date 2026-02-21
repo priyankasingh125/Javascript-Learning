@@ -217,4 +217,13 @@ top:20dvh;
 left:18dvh;
 position:relative;
 }
+.about-header 
+{
+text-align:center; 
+top:25svh;
+left:15svh;
+position:relative;
+width:80svh;
+justify-content:center;
+}
 }
