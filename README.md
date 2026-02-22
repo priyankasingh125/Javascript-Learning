@@ -8,10 +8,10 @@ HTML/CSS/JAVASCRIPT
 
 KEY FEATURES:
 This is an online Quiz, for SQL Proficiency Level Checking. You need to score 50 Percent to pass.User can select the answer for first one time.
-If he selects a wrong answer , the correct answer will be highlighted, but if he tries to select the right answer later, The score will not be incremented. First Choice is the final Choice of selection.
+If User selects a wrong answer , the correct answer will be highlighted, but if User tries to select the right answer later, The score will not be incremented. First Choice is the final Choice of selection.
 
 ACCESSIBILITY:
-I have kept the font size greater than 16px, so that the user with disability can see the website, Colour contrasts as well in line with the user with imapired viosion.
+I have kept the font size greater than 16px, so that the user with disability can see the website, Colour contrasts as well in line with the user with imapired vision.
 As it was a Quiz, website , I have not kept any other features for the user. They can open the website ion different devices according to their accessibilities.
 
 VALIDATION:
