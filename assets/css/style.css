@@ -200,12 +200,12 @@ font-size: 16px;
 {
 display:flex;
 flex-direction:column;
-top:20svh;
-max-width:58svh;
+top:25svh;
+max-width:56svh;
 max-height:40svh;
 font-size:10px;
-left:12dvh;
-right:10dvh;
+right:2dvh;
+left:2dvh;
 }
 .header 
 {
